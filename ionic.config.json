@@ -1,0 +1,7 @@
+{
+  "name": "coinwavepro",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
