@@ -1,0 +1,35 @@
+<div [class]="cardClasses">
+  <!-- Icon -->
+  <div [class]="'flex items-center justify-center w-10 h-10 rounded-xl ' + iconBgClasses">
+    <!-- Wallet Icon -->
+    <svg *ngIf="icon === 'wallet'" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" [class]="textColorClasses"
+      fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+    </svg>
+    <!-- Trending Icon -->
+    <svg *ngIf="icon === 'trending'" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" [class]="textColorClasses"
+      fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+    </svg>
+    <!-- Tasks Icon -->
+    <svg *ngIf="icon === 'tasks'" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" [class]="textColorClasses"
+      fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+    </svg>
+    <!-- Gift Icon -->
+    <svg *ngIf="icon === 'gift'" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" [class]="textColorClasses"
+      fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+    </svg>
+  </div>
+
+  <!-- Content -->
+  <div class="flex-1">
+    <p [class]="'text-xs font-medium ' + subtitleColorClasses">{{ title }}</p>
+    <p [class]="'text-xl font-bold ' + textColorClasses">{{ value }}</p>
+    <p *ngIf="subtitle" [class]="'text-xs mt-0.5 ' + subtitleColorClasses">{{ subtitle }}</p>
+  </div>
+</div>

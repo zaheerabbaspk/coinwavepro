@@ -1,6 +1,123 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="max-w-4xl mx-auto space-y-6">
 
-  <div class="p-4 bg-blue-900 text-white">Hello</div>
-  <div class="w-full h-10 bg-emerald-500"></div>
+    <!-- Stats Section -->
+    <div class="grid grid-cols-2 gap-3">
+      <!-- Balance Card (Green Gradient - Large) -->
+      <app-stat-card class="col-span-1" title="Balance" [value]="stats.balance" [subtitle]="stats.balanceChange"
+        icon="wallet" variant="green">
+      </app-stat-card>
+
+      <!-- Total Earned Card (Amber Gradient) -->
+      <app-stat-card title="Total Earned" [value]="stats.totalEarned" icon="trending" variant="amber">
+      </app-stat-card>
+
+      <!-- Tasks Done Card (Dark) -->
+      <app-stat-card title="Tasks Done" [value]="stats.tasksDone" icon="tasks" variant="dark">
+      </app-stat-card>
+
+      <!-- Next Reward Card (Dark) -->
+      <app-stat-card title="Next Reward" [value]="stats.nextReward" icon="gift" variant="dark">
+      </app-stat-card>
+    </div>
+
+    <!-- Active Package Section -->
+    <section>
+      <div class="flex justify-between items-center mb-3">
+        <h2 class="text-lg font-bold text-white">Active Package</h2>
+        <button (click)="navigateToPackages()"
+          class="text-emerald-400 text-sm font-medium flex items-center gap-1 hover:text-emerald-300">
+          View All
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="bg-gray-800 border border-gray-700 rounded-2xl p-4">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <h3 class="text-white font-bold">{{ activePackage.name }}</h3>
+            <p class="text-gray-400 text-sm">{{ activePackage.priceRange }}</p>
+          </div>
+          <span class="bg-emerald-500/20 text-emerald-400 text-xs px-2 py-1 rounded-full border border-emerald-500/50">
+            Active
+          </span>
+        </div>
+
+        <!-- Progress -->
+        <div class="mb-3">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-gray-400 text-sm">Weekly Progress</span>
+            <span class="text-gray-400 text-sm">{{ activePackage.daysProgress }}</span>
+          </div>
+          <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+            <div class="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full"
+              [style.width.%]="activePackage.progress">
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom row -->
+        <div class="flex justify-between items-center pt-3 border-t border-gray-700">
+          <div>
+            <p class="text-gray-400 text-xs">Earned so far</p>
+            <p class="text-emerald-400 font-bold text-lg">{{ activePackage.earnedSoFar }}</p>
+          </div>
+          <button (click)="navigateToTasks()"
+            class="bg-emerald-500 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-emerald-600 transition-colors">
+            Complete Tasks
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Today's Tasks Section -->
+    <section>
+      <div class="flex justify-between items-center mb-3">
+        <h2 class="text-lg font-bold text-white">Today's Tasks</h2>
+        <button (click)="navigateToTasks()"
+          class="text-emerald-400 text-sm font-medium flex items-center gap-1 hover:text-emerald-300">
+          See All
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <app-task-card *ngFor="let task of tasks" [task]="task" (startTask)="onStartTask($event)"
+          (continueTask)="onContinueTask($event)">
+        </app-task-card>
+      </div>
+    </section>
+
+    <!-- Quick Actions Section -->
+    <section>
+      <h2 class="text-lg font-bold text-white mb-3">Quick Actions</h2>
+      <div class="grid grid-cols-2 gap-3">
+        <button (click)="navigateToPackages()"
+          class="bg-gray-800 border border-gray-700 rounded-2xl p-4 flex flex-col items-center gap-2 hover:bg-gray-700 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-400" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+          </svg>
+          <span class="text-white font-medium text-sm">Buy Package</span>
+        </button>
+
+        <button (click)="navigateToRewards()"
+          class="bg-gray-800 border border-gray-700 rounded-2xl p-4 flex flex-col items-center gap-2 hover:bg-gray-700 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          </svg>
+          <span class="text-white font-medium text-sm">View Rewards</span>
+        </button>
+      </div>
+    </section>
+
+  </div>
 </ion-content>
-  

@@ -1,13 +1,148 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>reward</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="max-w-4xl mx-auto my-20 space-y-6">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">reward</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <!-- Balance Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Available Balance -->
+      <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl p-5 shadow-lg relative overflow-hidden">
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+              </svg>
+            </div>
+            <span class="text-emerald-100 text-sm font-medium">Available Balance</span>
+          </div>
+          <h2 class="text-3xl font-bold text-white">${{ availableBalance.toFixed(2) }}</h2>
+        </div>
+        <!-- Decorative Circle -->
+        <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+      </div>
+
+      <!-- Total Earned -->
+      <div class="bg-gradient-to-br from-amber-400 to-amber-500 rounded-2xl p-5 shadow-lg relative overflow-hidden">
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-900" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+            </div>
+            <span class="text-amber-900/70 text-sm font-medium">Total Earned</span>
+          </div>
+          <h2 class="text-3xl font-bold text-gray-900">${{ totalEarned.toFixed(2) }}</h2>
+        </div>
+        <!-- Decorative Circle -->
+        <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+      </div>
+    </div>
+
+    <!-- Withdraw Funds Card -->
+    <div class="bg-gray-800 border border-gray-700 rounded-2xl p-5">
+      <div class="flex justify-between items-center mb-4">
+        <div>
+          <h3 class="text-white font-bold">Withdraw Funds</h3>
+          <p class="text-gray-400 text-sm">Minimum withdrawal: $10</p>
+        </div>
+        <button (click)="onWithdraw()"
+          class="bg-emerald-500 text-white px-4 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 hover:bg-emerald-600 transition-colors">
+          Withdraw
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="bg-gray-900/50 rounded-xl p-3 flex items-center gap-2 text-gray-400 text-xs">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Processing time: 24-48 hours
+      </div>
+    </div>
+
+    <!-- Upcoming Rewards -->
+    <section>
+      <div class="flex items-center gap-2 mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+        <h2 class="text-lg font-bold text-white">Upcoming Rewards</h2>
+      </div>
+
+      <div class="space-y-3">
+        <div *ngFor="let reward of upcomingRewards" class="bg-gray-800 border border-gray-700 rounded-2xl p-4">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <h3 class="text-white font-semibold">{{ reward.name }}</h3>
+              <p class="text-gray-400 text-xs">{{ reward.date }}</p>
+            </div>
+            <span class="text-amber-400 font-bold text-lg">${{ reward.amount.toFixed(2) }}</span>
+          </div>
+
+          <div class="flex justify-between items-center text-xs text-gray-400 mb-1">
+            <span>Time remaining</span>
+            <span>{{ reward.daysRemaining }} days</span>
+          </div>
+
+          <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+            <div class="h-full bg-amber-500 rounded-full" [style.width.%]="reward.progress"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Earnings History -->
+    <section>
+      <div class="flex items-center gap-2 mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <h2 class="text-lg font-bold text-white">Earnings History</h2>
+      </div>
+
+      <div class="space-y-3">
+        <div *ngFor="let item of earningsHistory"
+          class="bg-gray-800 border border-gray-700 rounded-2xl p-4 flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-white font-medium">{{ item.title }}</h3>
+            <p class="text-gray-400 text-xs">{{ item.date }}</p>
+          </div>
+          <span class="text-emerald-400 font-bold">+${{ item.amount.toFixed(2) }}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Streak Bonus Banner -->
+    <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-4 flex items-center gap-4">
+      <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-bold text-white">Streak Bonus Active!</h3>
+        <p class="text-white/80 text-sm">7-day login streak: +10% on all rewards</p>
+      </div>
+    </div>
+
+  </div>
 </ion-content>

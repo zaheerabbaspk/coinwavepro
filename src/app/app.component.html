@@ -1,3 +1,11 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+    <app-sidebar *ngIf="showSidebar"></app-sidebar>
+
+    <!-- Main content area -->
+    <div class="flex flex-col min-h-screen" [class.md:ml-64]="showSidebar" [class.md:pr-6]="showSidebar">
+        <app-header *ngIf="showSidebar"></app-header>
+        <ion-router-outlet></ion-router-outlet>
+    </div>
+
+    <app-footer *ngIf="showSidebar"></app-footer>
 </ion-app>

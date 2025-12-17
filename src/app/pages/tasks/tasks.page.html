@@ -1,13 +1,86 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tasks</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="max-w-4xl mx-auto my-20 space-y-6">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tasks</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <!-- Today's Progress Card -->
+    <div class="bg-gray-800 border border-gray-700 rounded-2xl p-4">
+      <div class="flex items-center gap-4">
+        <!-- Circular Icon -->
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-400" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+
+        <div class="flex-1">
+          <div class="flex justify-between items-center mb-1">
+            <h3 class="text-white font-bold">Today's Progress</h3>
+            <span class="text-emerald-400 font-medium text-sm">{{ todayProgress.current }}/{{ todayProgress.total
+              }}</span>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden mb-2">
+            <div class="h-full bg-emerald-500 rounded-full"
+              [style.width.%]="(todayProgress.current / todayProgress.total) * 100">
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-400">
+            Complete all tasks to earn a <span class="text-amber-400 font-bold">${{ todayProgress.bonus.toFixed(2) }}
+              bonus</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Weekly Challenge Banner -->
+    <div class="bg-gradient-to-r from-amber-500 to-amber-600 rounded-2xl p-4 flex items-center gap-4 text-gray-900">
+      <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-900" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg">Weekly Challenge</h3>
+        <p class="text-sm font-medium opacity-90">
+          Complete {{ weeklyChallenge.total }} tasks this week for a ${{ weeklyChallenge.bonus }} bonus!
+        </p>
+      </div>
+    </div>
+
+    <!-- Segments -->
+    <div class="flex gap-2">
+      <button (click)="setSegment('all')" class="px-4 py-2 rounded-xl text-sm font-medium transition-colors"
+        [class.bg-emerald-500]="currentSegment === 'all'" [class.text-white]="currentSegment === 'all'"
+        [class.bg-gray-800]="currentSegment !== 'all'" [class.text-gray-400]="currentSegment !== 'all'">
+        All Tasks
+      </button>
+      <button (click)="setSegment('available')" class="px-4 py-2 rounded-xl text-sm font-medium transition-colors"
+        [class.bg-emerald-500]="currentSegment === 'available'" [class.text-white]="currentSegment === 'available'"
+        [class.bg-gray-800]="currentSegment !== 'available'" [class.text-gray-400]="currentSegment !== 'available'">
+        Available
+      </button>
+      <button (click)="setSegment('completed')" class="px-4 py-2 rounded-xl text-sm font-medium transition-colors"
+        [class.bg-emerald-500]="currentSegment === 'completed'" [class.text-white]="currentSegment === 'completed'"
+        [class.bg-gray-800]="currentSegment !== 'completed'" [class.text-gray-400]="currentSegment !== 'completed'">
+        Completed
+      </button>
+    </div>
+
+    <!-- Tasks List -->
+    <div class="space-y-3">
+      <app-task-card *ngFor="let task of filteredTasks" [task]="task" (startTask)="onStartTask($event)"
+        (continueTask)="onContinueTask($event)">
+      </app-task-card>
+
+      <!-- Empty State -->
+      <div *ngIf="filteredTasks.length === 0" class="text-center py-8 text-gray-500">
+        <p>No tasks found in this category.</p>
+      </div>
+    </div>
+
+  </div>
 </ion-content>

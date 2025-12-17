@@ -1,0 +1,23 @@
+<div class="flex items-center justify-center py-4">
+  <ng-container *ngFor="let step of steps; let last = last">
+    <!-- Step Circle -->
+    <div
+      [class]="'flex items-center justify-center w-10 h-10 rounded-full font-semibold text-sm ' + getStepClass(step)">
+      <!-- Checkmark for completed steps -->
+      <ng-container *ngIf="step < currentStep">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </ng-container>
+      <!-- Step number for current and future steps -->
+      <ng-container *ngIf="step >= currentStep">
+        {{ step }}
+      </ng-container>
+    </div>
+
+    <!-- Connector Line -->
+    <div *ngIf="!last" [class]="'w-16 h-1 mx-2 rounded-full ' + getLineClass(step)">
+    </div>
+  </ng-container>
+</div>
