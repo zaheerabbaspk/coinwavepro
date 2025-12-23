@@ -40,3 +40,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ion-content {
+    --background: #000;
+}
