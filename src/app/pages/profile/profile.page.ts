@@ -39,7 +39,6 @@ export class ProfilePage implements OnInit {
   }
 
   onSignOut() {
-    // Clear user data and navigate to login/signup
     console.log('User signed out');
     this.router.navigate(['/signup']);
   }

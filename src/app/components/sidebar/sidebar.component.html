@@ -1,6 +1,6 @@
 <aside
   class="w-64 bg-gray-900 border-r border-gray-700 h-screen fixed left-0 top-0 overflow-y-auto hidden md:block z-50">
-  <!-- Logo -->
+
   <div class="p-6 border-b border-gray-700">
     <div class="flex items-center gap-3">
       <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center">
@@ -13,9 +13,7 @@
     </div>
   </div>
 
-  <!-- Navigation -->
   <nav class="flex flex-col p-4 space-y-2">
-    <!-- Dashboard -->
     <div (click)="navigate('/dashboard')"
       class="flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors"
       [class]="isActive('/dashboard') ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/20' : 'text-gray-400 hover:bg-gray-800 hover:text-white'">
@@ -27,7 +25,6 @@
       <span class="font-medium">Dashboard</span>
     </div>
 
-    <!-- Packages -->
     <div (click)="navigate('/packages')" class="flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors"
       [class]="isActive('/packages') ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/20' : 'text-gray-400 hover:bg-gray-800 hover:text-white'">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -38,7 +35,6 @@
       <span class="font-medium">Packages</span>
     </div>
 
-    <!-- Tasks -->
     <div (click)="navigate('/tasks')" class="flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors"
       [class]="isActive('/tasks') ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/20' : 'text-gray-400 hover:bg-gray-800 hover:text-white'">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -49,7 +45,6 @@
       <span class="font-medium">Tasks</span>
     </div>
 
-    <!-- History -->
     <div (click)="navigate('/history')" class="flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors"
       [class]="isActive('/history') ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/20' : 'text-gray-400 hover:bg-gray-800 hover:text-white'">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -59,7 +54,6 @@
       <span class="font-medium">History</span>
     </div>
 
-    <!-- Reward -->
     <div (click)="navigate('/reward')" class="flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors"
       [class]="isActive('/reward') ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/20' : 'text-gray-400 hover:bg-gray-800 hover:text-white'">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -70,7 +64,6 @@
       <span class="font-medium">Reward</span>
     </div>
 
-    <!-- Wallet -->
     <div (click)="navigate('/wallet')" class="flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors"
       [class]="isActive('/wallet') ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/20' : 'text-gray-400 hover:bg-gray-800 hover:text-white'">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -81,7 +74,6 @@
       <span class="font-medium">Wallet</span>
     </div>
 
-    <!-- Profile -->
     <div (click)="navigate('/profile')" class="flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors"
       [class]="isActive('/profile') ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/20' : 'text-gray-400 hover:bg-gray-800 hover:text-white'">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
