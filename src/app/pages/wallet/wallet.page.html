@@ -1,10 +1,8 @@
 <ion-content [fullscreen]="true" class="ion-padding bg-gray-900">
   <div class="max-w-4xl mx-auto my-10 space-y-8">
 
-    <!-- Balance Card -->
     <div
       class="bg-gradient-to-br from-emerald-600 to-emerald-900 rounded-3xl p-8 relative overflow-hidden shadow-2xl shadow-emerald-900/40">
-      <!-- Decor -->
       <div
         class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2">
       </div>
@@ -19,7 +17,6 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-      <!-- Withdrawal Form Section -->
       <div class="lg:col-span-1">
         <div class="bg-gray-800 border border-gray-700 rounded-3xl p-6 shadow-xl sticky top-8">
           <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
@@ -54,10 +51,8 @@
         </div>
       </div>
 
-      <!-- Transaction History Section -->
       <div class="lg:col-span-2 space-y-6">
 
-        <!-- Tabs -->
         <div class="flex p-1 bg-gray-800 rounded-xl w-fit">
           <button (click)="setTab('pending')" class="px-6 py-2 rounded-lg text-sm font-medium transition-all"
             [class.bg-emerald-600]="activeTab === 'pending'" [class.text-white]="activeTab === 'pending'"
@@ -71,10 +66,8 @@
           </button>
         </div>
 
-        <!-- Component: List Layout inspired by History Page -->
         <div class="bg-gray-800 border border-gray-700 rounded-3xl overflow-hidden shadow-xl min-h-[400px]">
 
-          <!-- Pending List -->
           @if (activeTab === 'pending') {
           <div>
             <div *ngFor="let req of pendingRequests; let last = last"
@@ -127,7 +120,6 @@
               </div>
             </div>
 
-            <!-- Empty State -->
             <div *ngIf="pendingRequests.length === 0"
               class="flex flex-col items-center justify-center py-20 text-gray-500">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-4 opacity-20" fill="none" viewBox="0 0 24 24"
@@ -139,7 +131,6 @@
             </div>
           </div>
           }
-          <!-- History List -->
           @if (activeTab === 'history') {
           <div>
             <div *ngFor="let tx of transactionHistory; let last = last"
@@ -195,7 +186,6 @@
                 <p class="text-lg md:text-xl font-bold text-white">${{ tx.amount.toFixed(2) }}</p>
               </div>
             </div>
-            <!-- Empty State -->
             @if(transactionHistory.length === 0){
             <div class="text-center py-8 text-gray-500">
               <p>No transactions found.</p>

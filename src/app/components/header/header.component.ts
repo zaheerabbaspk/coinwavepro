@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
     '/tasks': { title: 'Daily Tasks', subtitle: 'Complete tasks to earn rewards' },
     '/packages': { title: 'Investment Packages', subtitle: 'Choose a package to start earning' },
     '/payment': { title: 'Complete Payment', subtitle: 'Growth Pack - $15', showBack: true, backRoute: '/packages' },
+    '/notifications': { title: 'Notifications', subtitle: 'Stay updated with latest news', showBack: true, backRoute: '/dashboard' },
   };
 
   constructor(
@@ -69,8 +70,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onBellClick() {
-    // Navigate to notifications or handle bell click
-    console.log('Bell clicked');
+    this.router.navigate(['/notifications']);
   }
 
   onBackClick() {
