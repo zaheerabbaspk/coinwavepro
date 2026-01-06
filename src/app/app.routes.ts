@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'signup',
     pathMatch: 'full',
   },
   {
@@ -53,6 +53,12 @@ export const routes: Routes = [
   {
     path: 'notifications',
     loadComponent: () => import('./pages/notifications/notifications.page').then( m => m.NotificationsPage)
+  },
+  // Catch-all: handle 404 by redirecting to signup
+  {
+    path: '**',
+    redirectTo: 'signup',
+    pathMatch: 'full',
   },
 
 ];
