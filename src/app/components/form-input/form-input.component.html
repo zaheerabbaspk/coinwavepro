@@ -6,7 +6,7 @@
   </label>
 
   <!-- Input Container -->
-  <div [class]="containerClasses">
+  <div [class]="containerClasses" class="overflow-hidden">
     <!-- Left Icon -->
     <ng-container *ngIf="icon">
       <!-- Email Icon -->
@@ -48,7 +48,7 @@
     <!-- Input -->
     <input [type]="inputType" [value]="value" [placeholder]="placeholder" [disabled]="disabled" [required]="required"
       (input)="onInput($event)" (blur)="onBlur()" (focus)="onFocus()"
-      class="flex-1 bg-transparent text-white placeholder-gray-500 outline-none text-sm" />
+      class="flex-1 min-w-0 bg-transparent text-white placeholder-gray-500 outline-none text-sm" />
 
     <!-- Password Toggle (for password type) -->
     <button *ngIf="type === 'password'" type="button" (click)="togglePassword()"
