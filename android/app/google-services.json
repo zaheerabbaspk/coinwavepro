@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1086507933954",
+    "project_id": "coinwavetop",
+    "storage_bucket": "coinwavetop.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086507933954:android:25ce9c10f3274a45f6e21b",
+        "android_client_info": {
+          "package_name": "com.coinwavetop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1086507933954-l772s3jbhvmt8hur9sgpueqqq0mf4t70.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSJZTNZ7BPRuwfLQgLD2gKruDZ-Y2JmAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1086507933954-l772s3jbhvmt8hur9sgpueqqq0mf4t70.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
