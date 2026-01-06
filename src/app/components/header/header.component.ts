@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
     '/reward': { title: 'Rewards', subtitle: 'Track your earnings and payouts' },
     '/tasks': { title: 'Daily Tasks', subtitle: 'Complete tasks to earn rewards' },
     '/packages': { title: 'Investment Packages', subtitle: 'Choose a package to start earning' },
+    '/wallet': { title: 'Wallet', subtitle: 'Your wallet balance' },
     '/payment': { title: 'Complete Payment', subtitle: 'Growth Pack - $15', showBack: true, backRoute: '/packages' },
     '/notifications': { title: 'Notifications', subtitle: 'Stay updated with latest news', showBack: true, backRoute: '/dashboard' },
   };
@@ -45,18 +46,13 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Set initial config based on current route
     this.updatePageConfig(this.router.url);
   }
 
   private updatePageConfig(url: string) {
-    // Get base path without query params
     const basePath = url.split('?')[0];
 
-    // Find matching config or use default
     const config = this.pageConfigs[basePath] ? { ...this.pageConfigs[basePath] } : { ...this.pageConfigs['/home'] };
-
-    // For payment page, update subtitle with package info from query params
     if (basePath === '/payment') {
       this.route.queryParams.subscribe(params => {
         if (params['packageName'] && params['packagePrice']) {

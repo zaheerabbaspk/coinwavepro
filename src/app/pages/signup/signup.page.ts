@@ -16,13 +16,11 @@ type AuthView = 'landing' | 'login' | 'signup';
 export class SignupPage implements OnInit {
   view: AuthView = 'landing';
 
-  // Login Form Data
   loginData = {
     email: '',
     password: ''
   };
 
-  // Signup Form Data
   signupData = {
     fullName: '',
     email: '',

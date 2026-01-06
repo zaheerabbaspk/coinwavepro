@@ -1,16 +1,13 @@
 <ion-content [fullscreen]="true" class="bg-gray-900">
   <div class="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden bg-gray-900">
 
-    <!-- Background Decor -->
     <div class="absolute top-0 left-0 w-full h-64 bg-emerald-500/10 blur-3xl rounded-full transform -translate-y-1/2">
     </div>
     <div class="absolute bottom-0 right-0 w-64 h-64 bg-emerald-500/5 blur-3xl rounded-full transform translate-y-1/2">
     </div>
 
-    <!-- Main Container -->
     <div class="w-full max-w-md z-10">
 
-      <!-- Logo Header (Visible on all views) -->
       <div class="text-center mb-8 animate-fade-in-down">
         <div
           class="w-16 h-16 bg-emerald-500 rounded-2xl mx-auto flex items-center justify-center mb-4 shadow-lg shadow-emerald-500/20">
@@ -25,11 +22,9 @@
         <p class="text-gray-400 mt-2 text-sm">Next Generation Crypto Investment</p>
       </div>
 
-      <!-- VIEW: Landing -->
       @if (view === 'landing') {
       <div class="space-y-4 animate-fade-in-up">
 
-        <!-- Google Login -->
         <button (click)="onGoogleLogin()"
           class="w-full bg-white text-gray-900 font-semibold h-14 rounded-xl flex items-center justify-center gap-3 hover:bg-gray-100 transition-colors shadow-lg active:scale-[0.98]">
           <svg class="w-6 h-6" viewBox="0 0 24 24">
@@ -72,7 +67,6 @@
         </p>
       </div>
       }
-      <!-- VIEW: Login -->
       @if (view === 'login') {
       <div class="bg-gray-800/50 backdrop-blur-xl border border-gray-700 p-6 rounded-3xl shadow-xl animate-fade-in-up">
 
@@ -109,7 +103,6 @@
       </div>
       }
 
-      <!-- VIEW: Signup -->
       @if (view === 'signup') {
       <div class="bg-gray-800/50 backdrop-blur-xl border border-gray-700 p-6 rounded-3xl shadow-xl animate-fade-in-up">
 
